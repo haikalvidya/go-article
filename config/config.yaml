@@ -7,7 +7,7 @@ server:
 database:
   user: "root"
   password: "password"
-  host: "localhost"
+  host: "db"
   port: "3306"
   name: "go-article"
   params: "charset=utf8mb4&parseTime=True&loc=Local"
@@ -17,7 +17,7 @@ jwt:
   access_token_expire_hour: 720
   refresh_token_expire_hour: 720
 redis:
-  host: "localhost"
+  host: "cache"
   port: "6379"
   password: ""
   db: 0

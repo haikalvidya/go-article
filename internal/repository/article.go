@@ -10,6 +10,7 @@ type IArticleRepository interface {
 	SelectByID(id int) (*models.ArticleModel, error)
 	SelectByAuthorID(authorID string) ([]*models.ArticleModel, error)
 	SearchByTitleAndContent(content string) ([]*models.ArticleModel, error)
+	SearchByTitleAndContentAndAuthorID(authorID string, content string) ([]*models.ArticleModel, error)
 	CreateTx(tx *gorm.DB, article *models.ArticleModel) (*models.ArticleModel, error)
 	DeleteTx(tx *gorm.DB, article *models.ArticleModel) error
 	UpdateTx(tx *gorm.DB, article *models.ArticleModel) error
@@ -19,7 +20,7 @@ type articleRepository repositoryType
 
 func (r *articleRepository) GetAll() ([]*models.ArticleModel, error) {
 	articles := []*models.ArticleModel{}
-	err := r.DB.Find(&articles).Error
+	err := r.DB.Preload("Author").Find(&articles).Error
 	if err != nil {
 		return nil, err
 	}
@@ -28,7 +29,7 @@ func (r *articleRepository) GetAll() ([]*models.ArticleModel, error) {
 
 func (r *articleRepository) SelectByID(id int) (*models.ArticleModel, error) {
 	article := &models.ArticleModel{}
-	err := r.DB.Where("id = ?", id).First(article).Error
+	err := r.DB.Preload("Author").Where("id = ?", id).First(article).Error
 	if err != nil {
 		return nil, err
 	}
@@ -37,7 +38,7 @@ func (r *articleRepository) SelectByID(id int) (*models.ArticleModel, error) {
 
 func (r *articleRepository) SelectByAuthorID(authorID string) ([]*models.ArticleModel, error) {
 	articles := []*models.ArticleModel{}
-	err := r.DB.Where("author_id = ?", authorID).Find(&articles).Error
+	err := r.DB.Preload("Author").Where("author_id = ?", authorID).Find(&articles).Error
 	if err != nil {
 		return nil, err
 	}
@@ -46,7 +47,7 @@ func (r *articleRepository) SelectByAuthorID(authorID string) ([]*models.Article
 
 func (r *articleRepository) SearchByTitleAndContent(content string) ([]*models.ArticleModel, error) {
 	articles := []*models.ArticleModel{}
-	err := r.DB.Where("title LIKE ? OR content LIKE ?", "%"+content+"%", "%"+content+"%").Find(&articles).Error
+	err := r.DB.Preload("Author").Where("title LIKE ? OR body LIKE ?", "%"+content+"%", "%"+content+"%").Find(&articles).Error
 	if err != nil {
 		return nil, err
 	}
@@ -75,4 +76,13 @@ func (r *articleRepository) UpdateTx(tx *gorm.DB, article *models.ArticleModel) 
 		return err
 	}
 	return nil
+}
+
+func (r *articleRepository) SearchByTitleAndContentAndAuthorID(authorID string, content string) ([]*models.ArticleModel, error) {
+	articles := []*models.ArticleModel{}
+	err := r.DB.Preload("Author").Where("author_id = ? AND (title LIKE ? OR body LIKE ?)", authorID, "%"+content+"%", "%"+content+"%").Find(&articles).Error
+	if err != nil {
+		return nil, err
+	}
+	return articles, nil
 }

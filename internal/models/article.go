@@ -10,7 +10,7 @@ import (
 type ArticleModel struct {
 	ID        int            `db:"id"`
 	Title     string         `db:"title"`
-	Content   string         `db:"content"`
+	Body      string         `db:"body"`
 	AuthorID  string         `db:"author_id"`
 	CreatedAt time.Time      `db:"created_at"`
 	UpdatedAt *time.Time     `db:"updated_at"`
@@ -32,7 +32,7 @@ func (a *ArticleModel) PublicInfo() *payload.ArticleInfo {
 	res := &payload.ArticleInfo{
 		ID:        a.ID,
 		Title:     a.Title,
-		Content:   a.Content,
+		Content:   a.Body,
 		AuthorID:  a.AuthorID,
 		CreatedAt: a.CreatedAt.Format(time.RFC3339),
 		UpdatedAt: a.UpdatedAt.Format(time.RFC3339),

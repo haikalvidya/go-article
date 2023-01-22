@@ -20,7 +20,13 @@ type UpdateArticleRequest struct {
 	Content string `json:"content"`
 }
 
+type ArticleQuery struct {
+	AuthorName  string `query:"author"`
+	QuerySearch string `query:"query"`
+}
+
 const (
 	ERROR_ARTICLE_NOT_FOUND   = "article not found"
 	ERROR_ARTICLE_NOT_ALLOWED = "article is not owned by author"
+	ERROR_GET_ARTICLE         = "error to get articles"
 )

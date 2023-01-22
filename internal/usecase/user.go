@@ -17,11 +17,16 @@ type IUserUsecase interface {
 	UpdateUser(userID string, req *payload.UpdateUserRequest) error
 	Logout(userID string) error
 	GetUser(userID string) (*payload.UserInfo, error)
+	GetUserByName(name string) (*payload.UserInfo, error)
 }
 
 type userUsecase usecaseType
 
 func (u *userUsecase) GetUser(userID string) (*payload.UserInfo, error) {
+	_, err := u.RedisClient.Get(userID).Result()
+	if err != nil {
+		return nil, errors.New(payload.ERROR_USER_NOT_LOGGED_IN)
+	}
 	user, err := u.Repo.User.SelectByID(userID)
 	if err != nil {
 		return nil, err
@@ -129,6 +134,16 @@ func (u *userUsecase) UpdateUser(userID string, req *payload.UpdateUserRequest) 
 		return errors.New(payload.ERROR_USER_NOT_LOGGED_IN)
 	}
 
+	if req.Password != nil && *req.Password != "" {
+		if req.PasswordConfirmation != nil && *req.PasswordConfirmation != "" {
+			if *req.Password != *req.PasswordConfirmation {
+				return errors.New(payload.ERROR_PASSWORD_NOT_MATCH)
+			}
+		} else {
+			return errors.New(payload.ERROR_PASSWORD_NOT_MATCH)
+		}
+	}
+
 	err = u.Repo.Tx.DoInTransaction(func(tx *gorm.DB) error {
 		// get user from db
 		user, err := u.Repo.User.SelectByID(userID)
@@ -160,4 +175,13 @@ func (u *userUsecase) UpdateUser(userID string, req *payload.UpdateUserRequest) 
 	})
 
 	return err
+}
+
+func (u *userUsecase) GetUserByName(name string) (*payload.UserInfo, error) {
+	user, err := u.Repo.User.SelectByName(name)
+	if err != nil {
+		return nil, errors.New(payload.ERROR_AUTHOR_NOT_FOUND)
+	}
+
+	return user.PublicInfo(), nil
 }

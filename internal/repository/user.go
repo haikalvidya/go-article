@@ -9,7 +9,7 @@ import (
 type IUserRepository interface {
 	SelectByID(id string) (*models.UserModel, error)
 	SelectByEmail(email string) (*models.UserModel, error)
-	SelectByPhone(phone string) (*models.UserModel, error)
+	SelectByName(name string) (*models.UserModel, error)
 	CreateTx(tx *gorm.DB, user *models.UserModel) (*models.UserModel, error)
 	DeleteTx(tx *gorm.DB, user *models.UserModel) error
 	UpdateTx(tx *gorm.DB, user *models.UserModel) error
@@ -43,9 +43,10 @@ func (r *userRepository) CreateTx(tx *gorm.DB, user *models.UserModel) (*models.
 	return user, nil
 }
 
-func (r *userRepository) SelectByPhone(phone string) (*models.UserModel, error) {
+func (r *userRepository) SelectByName(name string) (*models.UserModel, error) {
 	user := &models.UserModel{}
-	err := r.DB.Where("phone = ?", phone).First(user).Error
+	// like
+	err := r.DB.Where("name LIKE ?", "%"+name+"%").First(user).Error
 	if err != nil {
 		return nil, err
 	}

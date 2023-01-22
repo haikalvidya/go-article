@@ -48,7 +48,10 @@ func Route(e *echo.Echo, delivery *Delivery, mid *middlewares.CustomMiddleware) 
 	// article
 	article := e.Group("/article")
 	{
-		article.GET("", delivery.Article.GetAllArticle, mid.JWT.ValidateJWT())
+		article.GET("", delivery.Article.GetAllArticle)
+		article.GET("/:id", delivery.Article.GetArticleByID)
 		article.POST("", delivery.Article.CreateArticle, mid.JWT.ValidateJWT())
+		article.PUT("/:id", delivery.Article.UpdateArticle, mid.JWT.ValidateJWT())
+		article.DELETE("/:id", delivery.Article.DeleteArticle, mid.JWT.ValidateJWT())
 	}
 }
