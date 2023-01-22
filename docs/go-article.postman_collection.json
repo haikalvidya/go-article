@@ -1,0 +1,365 @@
+{
+	"info": {
+		"_postman_id": "5c863467-c354-49f8-8516-0541fb59c326",
+		"name": "go-article",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"eadsf@gmail.com\",\n    \"name\": \"vidya\",\n    \"password\": \"hekalPassAmanDong\",\n    \"password_confirmation\": \"hekalPassAmanDong\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/register",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"haikalvidya@gmail.com\",\n    \"password\": \"asdfasdfasdf\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/login",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete User",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NzU0NzY1MzUsInN1YiI6IjU2YzA4MzkwLWM4YzgtNDdjYS1iN2ZkLWRiMzRiNjFkOWEzOCJ9.Zwabv-zjmvvF9J70YYsyFUii_8-2rL_0F3Gi6cBScaw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/user",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Logout",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NzY5NzczNjYsInN1YiI6ImFjZmJhMzUyLTI5NzgtNGZiMi05NDBiLWUwM2I3ZGM0Zjk5YSJ9.I8kPnlwOOIqbAwygNvRW9GA9hZIKpnUoxLGyD9Pt8bQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/logout",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"logout"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get User",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NzY5ODAzOTksInN1YiI6ImQwNTBiZGYxLTE5OTQtNDZiMy1hODYyLTM4YjlmMGU0YmRkYiJ9.BdnAW5j1ATkL6yR1of96zWnkrcoNXqTcklW6JvEvbd4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/user",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NzY5NzczNjYsInN1YiI6ImFjZmJhMzUyLTI5NzgtNGZiMi05NDBiLWUwM2I3ZGM0Zjk5YSJ9.I8kPnlwOOIqbAwygNvRW9GA9hZIKpnUoxLGyD9Pt8bQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"pidya\",\n    \"password\": \"asdfasdfasdf\",\n    \"password_confirmation\": \"asdfasdfasdf\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/user",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"user"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Article",
+			"item": [
+				{
+					"name": "Get All Article",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/article",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"article"
+							],
+							"query": [
+								{
+									"key": "author",
+									"value": "bidya",
+									"disabled": true
+								},
+								{
+									"key": "query",
+									"value": "2",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Article",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NzY5ODAzOTksInN1YiI6ImQwNTBiZGYxLTE5OTQtNDZiMy1hODYyLTM4YjlmMGU0YmRkYiJ9.BdnAW5j1ATkL6yR1of96zWnkrcoNXqTcklW6JvEvbd4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"testing judul vidya\",\n    \"content\": \"asdfasdfasdfadsf adsfasdfasdfad adsfasdfasdf adsfasdfads\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/article",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"article"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get By Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/article/:id",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"article",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Article",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NzY5NzczNjYsInN1YiI6ImFjZmJhMzUyLTI5NzgtNGZiMi05NDBiLWUwM2I3ZGM0Zjk5YSJ9.I8kPnlwOOIqbAwygNvRW9GA9hZIKpnUoxLGyD9Pt8bQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/article/:id",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"article",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Article",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NzY5ODAzOTksInN1YiI6ImQwNTBiZGYxLTE5OTQtNDZiMy1hODYyLTM4YjlmMGU0YmRkYiJ9.BdnAW5j1ATkL6yR1of96zWnkrcoNXqTcklW6JvEvbd4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"testing judul 2\",\n    \"content\": \"asdfasdfasdfadsf adsfasdfasdfad adsfasdfasdf adsfasdfads\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/article/:id",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"article",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "11"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

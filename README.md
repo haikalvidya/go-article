@@ -1,5 +1,19 @@
 # go-article
 
+## Getting Started
+
+This project is using docker and docker-compose to run the application. So, you need to install docker and docker-compose first.
+
+Run the following command to start the application
+
+```bash
+docker-compose up -d
+```
+
+## API Documentation
+
+The API documentation is available at docs folder as a postman collection.
+
 ## About
 
 This is a simple article api using golang and clean architecture

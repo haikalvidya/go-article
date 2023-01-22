@@ -2,7 +2,7 @@ server:
   name: "go-article"
   env: "dev"
   address: ":8080"
-  base_url: "https://0d5a-103-157-48-85.ap.ngrok.io"
+  base_url: "localhost"
   internal_access_key: "inikeynya-aman-loh"
 database:
   user: "root"

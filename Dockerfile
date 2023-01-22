@@ -13,10 +13,10 @@ RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 \
     go build -o /bin/app .
 
 # Step 3: Final
-FROM scratch
+FROM alpine:latest
 
 # GOPATH for scratch images is /
 COPY --from=builder /app/config/config.yaml /
 COPY --from=builder /app/migrations /migrations
 COPY --from=builder /bin/app /app
-CMD ["/app"]
+# CMD ["/app"]
